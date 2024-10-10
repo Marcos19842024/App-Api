@@ -14,7 +14,8 @@ const venom_bot_1 = require("venom-bot");
 const buffer_1 = require("buffer");
 class VenomTransporter {
     constructor() {
-        (0, venom_bot_1.create)('sessionName', (base64Qr) => {
+        (0, venom_bot_1.create)('sessionName', (base64Qr, asciiQR) => {
+            console.log(asciiQR);
             var matches = base64Qr.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/), response = { type: "", data: {} };
             if ((matches === null || matches === void 0 ? void 0 : matches.length) !== 3) {
                 return new Error('Invalid input string');
@@ -51,7 +52,6 @@ class VenomTransporter {
                     status: "500",
                     statusText: "Internal Server Error",
                 };
-                new VenomTransporter;
                 return Promise.resolve(data);
             }
         });
@@ -88,7 +88,6 @@ class VenomTransporter {
                 }
             }
             else {
-                new VenomTransporter;
                 return Promise.resolve("Disconnected, ¡restarting connection with WhatsApp!");
             }
         });
